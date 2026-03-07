@@ -168,3 +168,39 @@ If TurboFan makes an assumption (e.g., "This function always gets an Integer") a
 - **Handle Errors:** Use `try...catch` locally and global handlers for safety.
 - **Clean Up:** Clear timers and remove event listeners to avoid leaks.
 - **Engine Friendly Code:** Write "predictable" code (consistent types) to help TurboFan optimize your functions.
+
+### Fix Memory Leak Examples:
+
+**1) Clearing Timers**
+```javascript
+let timer;
+
+function startTimer() {
+  timer = setInterval(() => {
+    console.log("Running...");
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+}
+```
+
+**2) Removing Detached DOM Nodes**
+```javascript
+let element = document.getElementById("box");
+
+document.body.removeChild(element);
+element = null;
+```
+
+**3) Cleanup in React useEffect**
+```javascript
+useEffect(() => {
+  const timer = setInterval(() => {
+    console.log("Running");
+  }, 1000);
+
+  return () => clearInterval(timer);
+}, []);
+```
