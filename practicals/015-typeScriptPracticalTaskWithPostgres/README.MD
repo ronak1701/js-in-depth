@@ -64,6 +64,3 @@ npm install
 npm start
 ```
 *Note: Ensure your PostgreSQL database is running and configuration is applied locally.*
-
----
-*Developed as a specific practice module for TypeScript integration in backend systems.*
